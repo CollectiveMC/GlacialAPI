@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -29,7 +30,6 @@ import com.glacialrush.api.security.SecurityController;
 import com.glacialrush.api.thread.GlacialTask;
 import com.glacialrush.packet.resourcepack.ResourceController;
 import com.glacialrush.xapi.Format;
-import org.bukkit.ChatColor;
 
 public class GlacialPlugin extends GPlugin
 {
@@ -65,6 +65,7 @@ public class GlacialPlugin extends GPlugin
 		return host;
 	}
 	
+	@Override
 	public void enable()
 	{
 		ms = System.currentTimeMillis();
@@ -92,17 +93,19 @@ public class GlacialPlugin extends GPlugin
 	{
 		o("||||||||||||||||||||||||||||||||");
 		o("================================");
-		v("FINISHED IN: " + Format.f(((double)((double)System.currentTimeMillis() - (double)ms) / 1000.0), 2) + "s");
+		v("FINISHED IN: " + Format.f(((double) ((double) System.currentTimeMillis() - (double) ms) / 1000.0), 2) + "s");
 		o("================================");
 		o("||||||||||||||||||||||||||||||||");
 	}
 	
+	@Override
 	public void register(Listener listener)
 	{
 		getServer().getPluginManager().registerEvents(listener, this);
 		s(ChatColor.DARK_GREEN + "REG: " + ChatColor.BLUE + listener.getClass().getSimpleName());
 	}
 	
+	@Override
 	public void unRegister(Listener listener)
 	{
 		HandlerList.unregisterAll(listener);
@@ -113,27 +116,27 @@ public class GlacialPlugin extends GPlugin
 	{
 		return chunkController;
 	}
-
+	
 	public MarketController getMarketController()
 	{
 		return marketController;
 	}
-
+	
 	public GameController getGameControl()
 	{
 		return gameControl;
 	}
-
+	
 	public BuycraftController getBuycraftController()
 	{
 		return buycraftController;
 	}
-
+	
 	public ServerDataComponent getServerDataComponent()
 	{
 		return serverDataComponent;
 	}
-
+	
 	public SecurityController getSecurityController()
 	{
 		return securityController;
@@ -174,6 +177,7 @@ public class GlacialPlugin extends GPlugin
 		componentManager.enable();
 	}
 	
+	@Override
 	public void disable()
 	{
 		componentManager.disable();
@@ -256,11 +260,6 @@ public class GlacialPlugin extends GPlugin
 	public DispatchListener getDispatchListener()
 	{
 		return dispatchListener;
-	}
-	
-	public Dispatcher getDispatcher()
-	{
-		return dispatcher;
 	}
 	
 	public void si(String... o)
