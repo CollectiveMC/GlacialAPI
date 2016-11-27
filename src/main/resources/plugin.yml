@@ -1,0 +1,4 @@
+name: GlacialAPI
+main: com.glacialrush.GlacialAPI
+depend: [NoCheatPlus, Votifier, ProtocolLib, Phantom]
+version: 2.0.1
